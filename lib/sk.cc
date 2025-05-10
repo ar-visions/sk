@@ -158,7 +158,7 @@ none sk_line_to(sk a, f32 x, f32 y) {
     ((SkPath*)a->sk_path)->lineTo(x, y);
 }
 
-none sk_rect(sk a, f32 x, f32 y, f32 w, f32 h) {
+none sk_rect_to(sk a, f32 x, f32 y, f32 w, f32 h) {
     SkCanvas* sk = (SkCanvas*)a->sk_canvas;
     draw_state ds = (draw_state)last(a->state);
     ((SkPath*)a->sk_path)->addRect(SkRect::MakeXYWH(x, y, w, h));
