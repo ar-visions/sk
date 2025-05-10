@@ -1,0 +1,45 @@
+#ifndef _SK_
+#define _SK_
+
+#include <A>
+#include <vec>
+#include <gltf-public>
+
+typedef void* skia_t;
+typedef void* handle_t;
+
+skia_t skia_init_vk(handle_t vk_instance, handle_t phys, handle_t device, handle_t queue, unsigned int graphics_family, unsigned int vk_version);
+
+
+#define sk_schema(X,Y,...) \
+    i_prop    (X,Y, intern,   ARef,    sk_context) \
+    i_prop    (X,Y, intern,   ARef,    sk_surface) \
+    i_prop    (X,Y, intern,   ARef,    sk_canvas) \
+    i_prop    (X,Y, intern,   ARef,    sk_path) \
+    i_prop    (X,Y, intern,   bool,    once) \
+    i_prop    (X,Y, intern,   struct Skia*, skia) \
+    i_prop    (X,Y, intern,   VkImageLayout, vk_layout, as, i32) \
+    i_method  (X,Y, public,   none,    save) \
+    i_method  (X,Y, public,   none,    restore) \
+    i_method  (X,Y, public,   none,    move_to,     f32, f32) \
+    i_method  (X,Y, public,   none,    line_to,     f32, f32) \
+    i_method  (X,Y, public,   none,    arc_to,      f32, f32, f32, f32, f32) \
+    i_method  (X,Y, public,   none,    arc,         f32, f32, f32, f32, f32) \
+    i_method  (X,Y, public,   none,    rect,        f32, f32, f32, f32) \
+    i_method  (X,Y, public,   none,    fill_color,  object) \
+    i_method  (X,Y, public,   none,    stroke_color, object) \
+    i_method  (X,Y, public,   none,    clear,       object) \
+    i_method  (X,Y, public,   none,    set_stroke,  stroke) \
+    i_method  (X,Y, public,   none,    set_font,    font) \
+    i_method  (X,Y, public,   none,    cubic,       f32, f32, f32, f32, f32, f32) \
+    i_method  (X,Y, public,   none,    quadratic,   f32, f32, f32, f32) \
+    i_method  (X,Y, public,   none,    draw_fill,   bool) \
+    i_method  (X,Y, public,   none,    draw_stroke, bool) \
+    i_method  (X,Y, public,   none,    sync) \
+    i_method  (X,Y, public,   none,    prepare) \
+    i_method  (X,Y, public,   none,    output_mode, bool) \
+    i_method  (X,Y, public,   none,    resize_texture, i32, i32) \
+    i_override(X,Y, method,   init,    dealloc)
+declare_mod(sk, canvas, image)
+
+#endif
