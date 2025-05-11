@@ -25,7 +25,7 @@ skia_t skia_init_vk(handle_t vk_instance, handle_t phys, handle_t device, handle
     i_method  (X,Y, public,   none,    line_to,     f32, f32) \
     i_method  (X,Y, public,   none,    arc_to,      f32, f32, f32, f32, f32) \
     i_method  (X,Y, public,   none,    arc,         f32, f32, f32, f32, f32) \
-    i_method  (X,Y, public,   none,    rect,        f32, f32, f32, f32) \
+    i_method  (X,Y, public,   none,    rect_to,     f32, f32, f32, f32) \
     i_method  (X,Y, public,   none,    fill_color,  object) \
     i_method  (X,Y, public,   none,    stroke_color, object) \
     i_method  (X,Y, public,   none,    clear,       object) \

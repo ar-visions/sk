@@ -136,7 +136,7 @@ none sk_init(sk a) {
     SkSafeRef(surface.get());
     a->sk_surface = (ARef)surface.get();
     a->sk_canvas  = (ARef)((SkSurface*)a->sk_surface)->getCanvas();
-    ((SkCanvas*)a->sk_canvas)->clear(SK_ColorBLACK); // <--- clear to black here
+    ((SkCanvas*)a->sk_canvas)->clear(SK_ColorWHITE); // <--- clear to black here
     a->sk_path    = (ARef)new SkPath();
     a->state      = array(alloc, 16);
     save(a);
@@ -269,7 +269,7 @@ none sk_stroke_color(sk a, object clr) {
 
 none sk_clear(sk a, object clr) {
     SkCanvas* sk = (SkCanvas*)a->sk_canvas;
-    SkColor fill = clr ? sk_color(clr) : SK_ColorBLACK;
+    SkColor fill = clr ? sk_color(clr) : SK_ColorWHITE;
     sk->clear(fill);
 }
 
