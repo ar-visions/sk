@@ -281,6 +281,7 @@ none sk_prepare(sk a) {
 
 none sk_sync(sk a) {
     GrDirectContext* direct_ctx = a->skia->ctx.get();
+    //transition(a->tx, VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL);
     direct_ctx->flush();
     if (!a->once) {
         a->once = true;

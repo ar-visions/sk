@@ -7,15 +7,10 @@ import:
 		-DBUILD_SHARED_LIBS=ON
 		-DGLFW_BUILD_WAYLAND=OFF
 		-DGLFW_VULKAN=ON
-
-	depot_tools	https://chromium.googlesource.com/chromium/tools/depot_tools.git	02e70b4
-		! export PATH=$TAPESTRY/checkout/depot_tools:$PATH
-		! export DEPOT_TOOLS_UPDATE=0
-		-lm
 	
 	skia 	https://skia.googlesource.com/skia.git 	c6835e2d5ff641dad9347ce4c2ff79dbc29cf9aa
-		cxx="$TAPESTRY/bin/clang++"
-		cc="$TAPESTRY/bin/clang"
+		cxx="clang++"
+		cc="clang"
 		is_official_build=true
 		is_debug=false
 		is_component_build=true
@@ -24,7 +19,6 @@ import:
 		skia_use_system_harfbuzz=false
 		skia_use_vulkan=true
 		skia_use_vma=true
-		skia_use_libwebp=false
 		skia_use_libwebp_encode=false
 		skia_use_libwebp_decode=false
 		skia_enable_gpu=true
