@@ -3,13 +3,13 @@
 
 #include <A>
 #include <vec>
+//#include <trinity>
 #include <gltf-public>
 
 typedef void* skia_t;
 typedef void* handle_t;
 
 skia_t skia_init_vk(handle_t vk_instance, handle_t phys, handle_t device, handle_t queue, unsigned int graphics_family, unsigned int vk_version);
-
 
 #define sk_schema(X,Y,...) \
     i_prop    (X,Y, intern,   ARef,    sk_context) \
@@ -33,8 +33,10 @@ skia_t skia_init_vk(handle_t vk_instance, handle_t phys, handle_t device, handle
     i_method  (X,Y, public,   none,    set_font,    font) \
     i_method  (X,Y, public,   none,    cubic,       f32, f32, f32, f32, f32, f32) \
     i_method  (X,Y, public,   none,    quadratic,   f32, f32, f32, f32) \
-    i_method  (X,Y, public,   none,    draw_fill,   bool) \
-    i_method  (X,Y, public,   none,    draw_stroke, bool) \
+    i_method  (X,Y, public,   none,    draw_fill) \
+    i_method  (X,Y, public,   none,    draw_stroke) \
+    i_method  (X,Y, public,   none,    draw_fill_preserve) \
+    i_method  (X,Y, public,   none,    draw_stroke_preserve) \
     i_method  (X,Y, public,   none,    sync) \
     i_method  (X,Y, public,   none,    prepare) \
     i_method  (X,Y, public,   none,    output_mode, bool) \

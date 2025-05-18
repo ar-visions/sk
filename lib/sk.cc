@@ -181,26 +181,34 @@ none sk_arc(sk a, f32 center_x, f32 center_y, f32 radius, f32 start_angle, f32 e
     ((SkPath*)a->sk_path)->addArc(rect, start_deg, sweep_deg);
 }
 
-none sk_draw_fill(sk a, bool preserve) {
+none sk_draw_fill_preserve(sk a) {
     SkCanvas*  sk     = (SkCanvas*)a->sk_canvas;
     draw_state ds     = (draw_state)last(a->state);
     SkPaint    paint;
     paint.setStyle(SkPaint::kFill_Style);
     paint.setColor(ds->fill_color); // assuming this exists in your draw_state
     sk->drawPath(*(SkPath*)a->sk_path, paint);
-    if (!preserve)
-        ((SkPath*)a->sk_path)->reset();
 }
 
-none sk_draw_stroke(sk a, bool preserve) {
+none sk_draw_fill(sk a) {
+    sk_draw_fill_preserve(a);
+    ((SkPath*)a->sk_path)->reset();
+}
+
+none sk_draw_stroke_preserve(sk a) {
     SkCanvas*  sk     = (SkCanvas*)a->sk_canvas;
     draw_state ds     = (draw_state)last(a->state);
+    if (!ds->stroke) return;
     SkPaint    paint;
     paint.setStyle(SkPaint::kStroke_Style);
+    paint.setStrokeWidth(ds->stroke->width);
     paint.setColor(ds->stroke_color); // assuming this exists in your draw_state
     sk->drawPath(*(SkPath*)a->sk_path, paint);
-    if (!preserve)
-        ((SkPath*)a->sk_path)->reset();
+}
+
+none sk_draw_stroke(sk a) {
+    sk_draw_stroke_preserve(a);
+    ((SkPath*)a->sk_path)->reset();
 }
 
 none sk_cubic(sk a, f32 cp1_x, f32 cp1_y, f32 cp2_x, f32 cp2_y, f32 ep_x, f32 ep_y) {
