@@ -164,6 +164,14 @@ none sk_rect_to(sk a, f32 x, f32 y, f32 w, f32 h) {
     ((SkPath*)a->sk_path)->addRect(SkRect::MakeXYWH(x, y, w, h));
 }
 
+/*
+none sk_rounded_rect_to(sk a, f32 x, f32 y, f32 w, f32 h, f32 sx, f32 sy) {
+    SkCanvas* sk = (SkCanvas*)a->sk_canvas;
+    draw_state ds = (draw_state)last(a->state);
+    ((SkPath*)a->sk_path)->addRoundedRect(SkRect::MakeXYWH(x, y, w, h));
+}
+*/
+
 none sk_arc_to(sk a, f32 x1, f32 y1, f32 x2, f32 y2, f32 radius) {
     SkCanvas*  sk     = (SkCanvas*)a->sk_canvas;
     draw_state ds     = (draw_state)last(a->state);
