@@ -164,13 +164,11 @@ none sk_rect_to(sk a, f32 x, f32 y, f32 w, f32 h) {
     ((SkPath*)a->sk_path)->addRect(SkRect::MakeXYWH(x, y, w, h));
 }
 
-/*
 none sk_rounded_rect_to(sk a, f32 x, f32 y, f32 w, f32 h, f32 sx, f32 sy) {
     SkCanvas* sk = (SkCanvas*)a->sk_canvas;
     draw_state ds = (draw_state)last(a->state);
-    ((SkPath*)a->sk_path)->addRoundedRect(SkRect::MakeXYWH(x, y, w, h));
+    ((SkPath*)a->sk_path)->addRoundRect(SkRect::MakeXYWH(x, y, w, h), sx, sy);
 }
-*/
 
 none sk_arc_to(sk a, f32 x1, f32 y1, f32 x2, f32 y2, f32 radius) {
     SkCanvas*  sk     = (SkCanvas*)a->sk_canvas;
@@ -195,6 +193,7 @@ none sk_draw_fill_preserve(sk a) {
     SkPaint    paint;
     paint.setStyle(SkPaint::kFill_Style);
     paint.setColor(ds->fill_color); // assuming this exists in your draw_state
+    paint.setAntiAlias(true); 
     sk->drawPath(*(SkPath*)a->sk_path, paint);
 }
 
@@ -211,6 +210,7 @@ none sk_draw_stroke_preserve(sk a) {
     paint.setStyle(SkPaint::kStroke_Style);
     paint.setStrokeWidth(ds->stroke->width);
     paint.setColor(ds->stroke_color); // assuming this exists in your draw_state
+    paint.setAntiAlias(true); 
     sk->drawPath(*(SkPath*)a->sk_path, paint);
 }
 
